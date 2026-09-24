@@ -23,7 +23,7 @@ public class UserController {
     public ResponseEntity<List<User>> list(){
         return ResponseEntity.ok(userService.list());
     }
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id){
         userService.delete(id);
         return ResponseEntity.ok("User deleted.");
