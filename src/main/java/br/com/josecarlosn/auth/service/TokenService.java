@@ -42,6 +42,6 @@ public class TokenService {
         catch (JWTVerificationException exception){throw new RuntimeException("Invalid token: ",exception);}
     }
     public Instant generateExpirationDate(){
-        return LocalDateTime.now().plusMinutes(1).toInstant(ZoneOffset.of("-3:00"));
+        return LocalDateTime.now().plusMinutes(1).toInstant(ZoneOffset.of("-03:00"));
     }
 }

@@ -17,10 +17,14 @@ public class AuthenticationService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+    private final TokenService tokenService;
 
     public void login(AuthenticationRequestDTO dto){
         var userNamePassword = new UsernamePasswordAuthenticationToken(dto.login(), dto.password());
         var auth = authenticationManager.authenticate(userNamePassword);
+        tokenService.generateToken((User) auth.getPrincipal());
+
+
     }
     public void register(RegisterRequestDTO dto){
         if (userRepository.findByLogin(dto.login()) != null) throw new UserException("User already exists.");
